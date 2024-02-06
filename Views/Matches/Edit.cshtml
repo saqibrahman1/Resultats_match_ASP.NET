@@ -1,0 +1,56 @@
+﻿@model scoreGr03.Models.Match
+
+@{
+    ViewData["Title"] = "Modifier Un Match";
+}
+
+<h1>Modifier Un Match</h1>
+
+
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Edit">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" id="id" asp-for="Id" />
+            <div class="form-group">
+                <label asp-for="DateHeure" class="control-label"></label>
+                <input asp-for="DateHeure" id="dateHeure" class="form-control" />
+                <span asp-validation-for="DateHeure" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ScoreDomicile" class="control-label"></label>
+                <input asp-for="ScoreDomicile" id="scoreDomicile" class="form-control" />
+                <span asp-validation-for="ScoreDomicile" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ScoreExterieur" class="control-label"></label>
+                <input asp-for="ScoreExterieur" id="scoreExterieur" class="form-control" />
+                <span asp-validation-for="ScoreExterieur" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="EquipeDomicileId" class="control-label"></label>
+                <select asp-for="EquipeDomicileId" id="equipeDomicile" class="form-control"  asp-items="ViewBag.EquipeDomicileId"></select>
+                <span asp-validation-for="EquipeDomicileId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="EquipeExterieurId" class="control-label"></label>
+                <select asp-for="EquipeExterieurId" id="equipeExterieur" class="form-control" asp-items="ViewBag.EquipeExterieurId"></select>
+                <span asp-validation-for="EquipeExterieurId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input id="savebtm" type="submit" value="Modifier" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Retour au listes</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    <script src="~/js/signalr/dist/browser/signalr.js"></script>
+    <script asp-append-version="true" src="~/js/EditMatches.js"></script>
+}

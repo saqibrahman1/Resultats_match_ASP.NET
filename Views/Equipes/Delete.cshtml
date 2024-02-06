@@ -1,0 +1,33 @@
+﻿@model scoreGr03.Models.Equipe
+
+@{
+    ViewData["Title"] = "Supprimer une Equipe ";
+}
+
+<h1>Supprimer une Equipe</h1>
+
+
+<div>
+    
+    <hr />
+    <dl class="row">
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Nom)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Nom)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Logo)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Logo)
+        </dd>
+    </dl>
+    
+    <form asp-action="Delete">
+        <input type="hidden" asp-for="Id" />
+        <input type="submit" value="Supprimer" class="btn btn-danger" /> |
+        <a asp-action="Index">Retour au listes</a>
+    </form>
+</div>

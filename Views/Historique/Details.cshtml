@@ -1,0 +1,125 @@
+﻿@model scoreGr03.Models.Match
+
+
+
+
+ @{
+     ViewData["Title"] = "Index";
+ }
+<style>
+
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #f3f4f6;
+    color: #333;
+    line-height: 1.6;
+}
+
+.container {
+    width: 80%;
+    margin: auto;
+    overflow: hidden;
+    padding: 20px;
+}
+
+.match-header {
+    text-align: center;
+    padding: 20px 0;
+    border-bottom: 2px solid #d1d3d4;
+    display: flex; /* Use flexbox to align items in a row */
+    justify-content: center; /* Center the items horizontally */
+    align-items: center; /* Center the items vertically */
+}
+
+.team {
+    font-size: 24px;
+    color: #333;
+    margin: 0 10px; /* Add some space between the team name and the score */
+}
+
+.match-score {
+    font-size: 40px;
+    color: #000;
+    font-weight: bold;
+    margin: 0 10px; /* Add some space between the score and the team name */
+}
+
+
+/* Goals list styles */
+.goals-list {
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    padding: 15px;
+    margin-bottom: 20px;
+}
+
+.goals-list li {
+    border-bottom: 1px solid #ececec;
+    padding: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.goals-list li:last-child {
+    border-bottom: none;
+}
+
+.minute {
+    font-size: 18px;
+    color: #555;
+    font-weight: bold;
+    margin-right: 10px;
+}
+
+.scorer {
+    font-size: 18px;
+    color: #666;
+    flex: 1;
+}
+
+</style>
+
+
+<div class="match-details-container">
+    <div class="match-details-container">
+        <div class="match-header">
+            <img src="@Model.EquipeDomicile?.Logo" alt="Logo"   style="height: 50px;"    />
+            <span class="team home-team">@Model.EquipeDomicile?.Nom</span>
+            <span class="match-score">@Model.ScoreDomicile - @Model.ScoreExterieur</span>
+            <span class="team away-team">@Model.EquipeExterieur?.Nom</span>
+             <img src="@Model.EquipeExterieur?.Logo" alt="Logo"   style="height: 50px; " />
+        </div>
+    
+    @if (Model.Buts != null && Model.Buts.Any())
+    {
+        <h3>Buts de la 1ère mi-temps</h3>
+        <ul class="goals-list">
+            @foreach (var but in Model.Buts.Where(b => int.Parse(b.Temps.TrimEnd('\'')) <= 45))
+            {
+                <li>
+                    <span class="minute">@but.Temps</span> 
+                    <span class="scorer">@but.Joueur?.Prenom @but.Joueur?.Nom (@but.Joueur?.Equipe?.Nom) </span>
+                </li>
+            }
+        </ul>
+        
+        <h3>Buts de la 2ère mi-temps</h3>
+        <ul class="goals-list">
+            @foreach (var but in Model.Buts.Where(b => int.Parse(b.Temps.TrimEnd('\'')) > 45))
+            {
+                <li>
+                    <span class="minute">@but.Temps</span> 
+                    <span class="scorer">@but.Joueur?.Prenom @but.Joueur?.Nom (@but.Joueur?.Equipe?.Nom) </span>
+                </li>
+            }
+        </ul>
+    }
+    else
+    {
+        <p>Aucun but pour ce match</p>
+    }
+
+    </div>
+</div>

@@ -1,0 +1,36 @@
+﻿@model scoreGr03.Models.But
+
+@{
+    ViewData["Title"] = "Détails D'Un But";
+}
+
+<h1> Détails D'Un But</h1>
+
+<div>
+    
+    <hr />
+    <dl class="row">
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Temps)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Temps)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Joueur)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Joueur.Id)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Match)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Match.Id)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-action="Edit" asp-route-id="@Model?.Id">Modifier</a> |
+    <a asp-action="Index">Retour au listes</a>
+</div>

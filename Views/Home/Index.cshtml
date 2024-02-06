@@ -1,0 +1,75 @@
+﻿@model IEnumerable<scoreGr03.Models.Match>
+ 
+ @{
+     ViewData["Title"] = "Index";
+ }
+<style>
+
+.match-results-container {
+    max-width: 600px;
+    margin: 0 auto;
+    font-family: 'Arial', sans-serif;
+}
+
+.match-result {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 50px 0;
+    border-bottom: 1px solid #ccc;
+}
+
+.match-date {
+    flex-basis: 30%;
+    text-align: left;
+}
+
+.team {
+    flex-basis: 30%;
+    text-align: left;
+}
+
+.home-team {
+    font-weight: bold;
+}
+
+.match-score {
+    flex-basis: 20%;
+    text-align: center;
+    font-weight: bold;
+}
+
+.away-team {
+    flex-basis: 30%;
+    text-align: right;
+}
+
+h1 {
+    text-align: center;
+    font-size: 24px;
+    margin-bottom: 20px;
+}
+
+
+</style>
+<div class="match-results-container">
+    <h1>Résultats des matchs</h1>
+    @foreach (var item in Model) {
+        <div class="match-result">
+            <span class="match-date">@item.DateHeure.ToString("yyyy MMMM dd hh:mm")</span>
+            <img src="@item.EquipeDomicile?.Logo" alt="Logo"   style="height: 30px;"    />
+            <span style="display: flex; align-items: center; height: 60px">@item.EquipeDomicile?.Nom.</span>
+            <span class="match-score">@item.ScoreDomicile - @item.ScoreExterieur</span>
+            <span style="display: flex; align-items: center; height: 60px">@item.EquipeExterieur?.Nom</span>
+            <img src="@item.EquipeExterieur?.Logo" alt="Logo"   style="height: 30px; " />
+            
+            
+        </div>
+        
+        
+        <td>
+            <a asp-controller="Historique" asp-action="Details" asp-route-id="@item.Id" >Voir les informations du match</a> 
+                            
+        </td>
+    }
+</div>

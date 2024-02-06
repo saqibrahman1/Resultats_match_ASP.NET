@@ -1,0 +1,55 @@
+﻿@model scoreGr03.Models.Match
+
+@{
+    ViewData["Title"] = "Supprimer Un Match";
+}
+
+<h1>Supprimer Un Match</h1>
+
+
+<div>
+    
+    <hr />
+    <dl class="row">
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.DateHeure)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.DateHeure)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.ScoreDomicile)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.ScoreDomicile)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.ScoreExterieur)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.ScoreExterieur)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.EquipeDomicile)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.EquipeDomicile.Id)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.EquipeExterieur)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.EquipeExterieur.Id)
+        </dd>
+    </dl>
+    
+    <form asp-action="Delete">
+        <input type="hidden" id="id" asp-for="Id" />
+        <input type="submit" id="supprimerbtm" value="Supprimer" class="btn btn-danger" /> |
+        <a asp-action="Index">Retour au listes</a>
+    </form>
+</div>
+
+@section Scripts {
+<script src="~/js/signalr/dist/browser/signalr.js"></script>
+<script src="~/js/DeleteMatch.js"></script> }

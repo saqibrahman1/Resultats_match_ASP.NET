@@ -1,0 +1,46 @@
+﻿@model scoreGr03.Models.But
+
+@{
+    ViewData["Title"] = "Modifier un But";
+}
+
+<h1> Modifier un But</h1>
+
+
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Edit">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" id="id" asp-for="Id" />
+            <div class="form-group">
+                <label asp-for="Temps" class="control-label"></label>
+                <input asp-for="Temps" id="temps" class="form-control" />
+                <span asp-validation-for="Temps" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="JoueurId" class="control-label"></label>
+                <select asp-for="JoueurId" class="form-control" id="joueurId" asp-items="ViewBag.JoueurId"></select>
+                <span asp-validation-for="JoueurId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="MatchId" class="control-label"></label>
+                <select asp-for="MatchId" class="form-control" id="matchId" asp-items="ViewBag.MatchId"></select>
+                <span asp-validation-for="MatchId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" id="savebtedit" value="Modifier" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Retour au listes</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    <script src="~/js/signalr/dist/browser/signalr.js"></script>
+    <script asp-append-version="true" src="~/js/EditButs.js"></script>
+}

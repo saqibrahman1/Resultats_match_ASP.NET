@@ -1,0 +1,33 @@
+﻿@model IEnumerable<scoreGr03.Models.But>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-action="Create">Créer un nouveau But</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Temps)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Joueur)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Match)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+     <tbody id="buts">
+        
+        </tbody>
+</table>
+@section Scripts{
+    <script src="~/js/signalr/dist/browser/signalr.js"></script>
+    <script  src="~/js/IndexButs.js"></script> }
